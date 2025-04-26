@@ -35,10 +35,6 @@ function changeDateColor() {
     const colorCode = prompt("Choose color (r=red, b=blue, g=green):");
     
     let color;
-    // if (colorCode === 'r') color = 'red';
-    // else if (colorCode === 'b') color = 'blue';
-    // else if (colorCode === 'g') color = 'green';
-    // else color = 'black';
 
     switch(colorCode)
     {
@@ -47,15 +43,6 @@ function changeDateColor() {
         case 'g': color = "green"; break;
         default : alert("Unkown Color Code");
     }
-    
-    // document.write(`
-    //     <p>
-    //         <strong>Current Date:</strong>
-    //         <span style="color: ${color}">
-    //             ${new Date().toLocaleDateString()}
-    //         </span>
-    //     </p>
-    // `);
 
     document.getElementById("date").style.color = color;
 }
@@ -64,26 +51,21 @@ function changeDateColor() {
 
 
 //Task 4: Random Password Generator
-// SIMPLE PASSWORD GENERATOR THAT WILL WORK
 function generatePassword() {
-    // 1. Get length from user (max 50, default 12)
     let length = parseInt(prompt("Password length? (1-50)")) || 12;
     if (length > 50) length = 50;
     
-    // 2. Generate the password
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let password = '';
+
     for (let i = 0; i < length; i++) {
         password += chars[Math.floor(Math.random() * chars.length)];
     }
     
-    // 3. Display it in the page
     document.getElementById("password").innerHTML = 
-        `Your Password: <strong>${password}</strong> (${length} characters)`;
+    `Your Password: <strong>${password}</strong> (${length} characters)`;
 }
 
-// CALL IT IMMEDIATELY WHEN SCRIPT LOADS
-// generatePassword();
 
 
 
