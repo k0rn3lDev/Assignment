@@ -22,14 +22,16 @@ function showRandomTip() {
 
 //Task 2: Display current date/time on the page
 function showDateTime() {
-    document.body.innerHTML += `<div>${new Date().toLocaleString()}</div>`;
+    document.getElementById("date").innerHTML += `<div>${new Date().toLocaleString()}</div>`;
+
+    changeDateColor();
 }
 
 
 
 
 //Task 3: Display colored date on the page
-function displayColoredDate() {
+function changeDateColor() {
     const colorCode = prompt("Choose color (r=red, b=blue, g=green):");
     
     let color;
@@ -46,41 +48,45 @@ function displayColoredDate() {
         default : alert("Unkown Color Code");
     }
     
-    document.write(`
-        <p>
-            <strong>Current Date:</strong>
-            <span style="color: ${color}">
-                ${new Date().toLocaleDateString()}
-            </span>
-        </p>
-    `);
+    // document.write(`
+    //     <p>
+    //         <strong>Current Date:</strong>
+    //         <span style="color: ${color}">
+    //             ${new Date().toLocaleDateString()}
+    //         </span>
+    //     </p>
+    // `);
+
+    document.getElementById("date").style.color = color;
 }
 
 
 
 
 //Task 4: Random Password Generator
+// SIMPLE PASSWORD GENERATOR THAT WILL WORK
 function generatePassword() {
-    let length = parseInt(prompt("Enter password length (max 50, default 12):")) || 12;
-    
+    // 1. Get length from user (max 50, default 12)
+    let length = parseInt(prompt("Password length? (1-50)")) || 12;
     if (length > 50) length = 50;
     
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    // 2. Generate the password
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let password = '';
-    
     for (let i = 0; i < length; i++) {
-        password += characters[Math.floor(Math.random() * characters.length)];
+        password += chars[Math.floor(Math.random() * chars.length)];
     }
     
-    document.body.innerHTML += `Password (${length} chars): <strong>${password}</strong>`;
+    // 3. Display it in the page
+    document.getElementById("password").innerHTML = 
+        `Your Password: <strong>${password}</strong> (${length} characters)`;
 }
+
+// CALL IT IMMEDIATELY WHEN SCRIPT LOADS
+// generatePassword();
 
 
 
 // Execute all tasks
-showRandomTip();
-displayColoredDate();
 generatePassword();
-
-
-
+showRandomTip();
